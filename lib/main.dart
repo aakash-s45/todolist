@@ -1,33 +1,33 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:todolist/ui/home.dart';
+import 'package:todolist/fire/dbContent.dart';
+import 'package:todolist/ui/screens/authentication.dart';
+import 'package:todolist/ui/screens/home.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(MaterialApp(
+    title: 'App',
+    home: await getLandingPage(),
+  ));
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  final collred = FirebaseFirestore.instance.collection('/todo');
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Home(),
-        // body: Text(),
-      ),
-      // initialRoute: ,
-    );
-  }
+Future<Widget> getLandingPage() async {
+  return StreamBuilder<User?>(
+    stream: FirebaseAuth.instance.authStateChanges(),
+    builder: (BuildContext context, snapshot) {
+      if (snapshot.hasData && (!snapshot.data!.isAnonymous)) {
+        DatabaseContent().setUser = snapshot.data;
+        DatabaseContent().setUserID = snapshot.data!.uid;
+        print("Logged in");
+        return Home();
+      }
+      print("Logged out");
+      return Authentication();
+    },
+  );
 }
