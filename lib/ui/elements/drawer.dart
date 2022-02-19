@@ -28,10 +28,10 @@ class _MyDrawerState extends State<MyDrawer> {
                 ),
                 margin: EdgeInsets.zero,
                 accountName: (DatabaseContent.usr!.displayName == null)
-                    ? Text("Name not found")
+                    ? const Text("Name not found")
                     : Text(DatabaseContent.usr!.displayName as String),
                 accountEmail: (mailId == null)
-                    ? Text("E mail not found")
+                    ? const Text("E mail not found")
                     : Text(mailId as String),
                 currentAccountPicture: const CircleAvatar(
                   backgroundImage: NetworkImage(
@@ -39,14 +39,14 @@ class _MyDrawerState extends State<MyDrawer> {
                 ),
               ),
             ),
-            ListTile(
+            const ListTile(
               leading: Icon(
                 Icons.home,
               ),
               title: Text('Home'),
             ),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.mail,
               ),
               title: Text('Email'),

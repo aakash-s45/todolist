@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todolist/fire/dbContent.dart';
+import 'package:todolist/fire/error.dart';
 import 'package:todolist/ui/contentreal.dart';
 import 'package:todolist/model/mytheme.dart';
 import 'package:todolist/ui/elements/drawer.dart';
@@ -51,16 +52,22 @@ class _HomeState extends State<Home> {
                 backgroundColor:
                     MaterialStateProperty.all(MyTheme.primaryColor),
               ),
-              onPressed: () {
-                DatabaseContent()
+              onPressed: () async {
+                await DatabaseContent()
                     .addContent(_addController.text, DatabaseContent.userID);
                 _addController.clear();
                 Navigator.pop(context);
-                if (DatabaseContent.apirun == true &&
-                    DatabaseContent.isApiData == false) {
+                // print("poped alert box");
+                // print('home is apidata ${DatabaseContent.isApiData}');
+                // print('home api run ${DatabaseContent.apirun}');
+                if (DatabaseContent.isApiData == false &&
+                    DatabaseContent.apirun == true) {
+                  print("api data is not present on pressed");
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text("No Mactching Movie/TV Show")));
                 }
+                DatabaseContent.apirun = false;
+                DatabaseContent.isApiData = false;
               },
               child: Text("Add"),
             )
@@ -105,25 +112,8 @@ class _HomeState extends State<Home> {
                   decoration: BoxDecoration(
                       color: MyTheme.secondaryColor,
                       borderRadius: BorderRadius.circular(12)),
-                  child: Stack(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-                            child: Text(
-                              "There is nothing to show",
-                              style: TextStyle(color: Colors.grey.shade700),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SingleChildScrollView(
-                        child: ContentItem(),
-                      ),
-                    ],
+                  child: SingleChildScrollView(
+                    child: ContentItem(),
                   ),
                 ),
               ),

@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:todolist/fire/dbContent.dart';
+import 'package:todolist/model/moviedetailapiData.dart';
 import 'package:todolist/model/mytheme.dart';
-import 'package:todolist/ui/screens/detail.dart';
 
 class ContentItemTile extends StatefulWidget {
   final content;
@@ -62,10 +62,8 @@ class _ContentItemTileState extends State<ContentItemTile> {
       },
       child: InkWell(
         onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => MovieDetail(widget.content)));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => ApiData(widget.content)));
         },
         child: Container(
           decoration: BoxDecoration(

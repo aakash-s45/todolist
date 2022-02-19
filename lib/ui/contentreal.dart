@@ -16,6 +16,7 @@ class ContentItem extends StatelessWidget {
       .snapshots();
   @override
   Widget build(BuildContext context) {
+    Map<String, dynamic> mp;
     return StreamBuilder(
       stream: _docStream,
       builder: (context, snapshot) {
@@ -30,26 +31,20 @@ class ContentItem extends StatelessWidget {
         } else {
           Object? snap = (snapshot.data);
           List contenT = (snap as dynamic)['names'];
-          listsize = contenT.length;
 
-          // print(contenT);
-          // {
-          //   'mname': apiData['Title'],
-          //   'rating': apiData['imdbRating'],
-          //   'poster': apiData['Poster']
-          // }
-
-          return Column(
-            children: contenT.reversed
-                .map((mov) => Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: Card(
-                          child: (mov != null)
-                              ? ContentItemTile(mov)
-                              : Text("null")),
-                    ))
-                .toList(),
-          );
+          return (contenT.isNotEmpty)
+              ? Column(
+                  children: contenT.reversed
+                      .map((mov) => Padding(
+                            padding: const EdgeInsets.all(12),
+                            child: Card(
+                                child: (mov != null)
+                                    ? ContentItemTile(mov)
+                                    : Text("null")),
+                          ))
+                      .toList(),
+                )
+              : Center(child: Text("There is Nothing to Show"));
         }
       },
     );

@@ -6,8 +6,8 @@ import "package:http/http.dart" as http;
 import 'dart:convert';
 
 class DatabaseContent {
-  static late bool isApiData = false;
-  static late bool apirun = false;
+  static bool isApiData = false;
+  static bool apirun = false;
   static late String userID;
   static late User? usr;
   static late int contentListSize = 0;
@@ -55,20 +55,22 @@ class DatabaseContent {
   Future<void> addContent(String content, String userid) async {
     final docRef = todoRef.doc(userid);
     Map<String, dynamic> apiData = await getRating(content);
-    if (apiData["Title"] != null) {
+    print(apiData);
+    if (apiData['Response'] == "True") {
       isApiData = true;
+
       Map<String, dynamic> contentObj = {
         'mname': apiData['Title'],
         'rating': apiData['imdbRating'],
-        'poster': apiData['Poster']
+        'poster': apiData['Poster'],
       };
-      apirun = false;
       return todoRef.doc(userid).update({
         'names': FieldValue.arrayUnion([contentObj])
       });
+    } else {
+      isApiData = false;
     }
-    isApiData = false;
-    print(isApiData);
+    // print(isApiData);
   }
 
   Future<String> getid() async {

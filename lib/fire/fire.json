@@ -1,29 +1,67 @@
-{
-    "Title": "Money Heist",
-    "Year": "2017–2021",
-    "Rated": "TV-MA",
-    "Released": "02 May 2017",
-    "Runtime": "70 min",
-    "Genre": "Action, Crime, Drama",
-    "Director": "N/A",
-    "Writer": "Álex Pina",
-    "Actors": "Úrsula Corberó, Álvaro Morte, Itziar Ituño",
-    "Plot": "An unusual group of robbers attempt to carry out the most perfect robbery in Spanish history - stealing 2.4 billion euros from the Royal Mint of Spain.",
-    "Language": "Spanish, Russian, Serbian, English",
-    "Country": "Spain",
-    "Awards": "31 wins & 41 nominations",
-    "Poster": "https://m.media-amazon.com/images/M/MV5BNDJkYzY3MzMtMGFhYi00MmQ4LWJkNTgtZGNiZWZmMTMxNzdlXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_SX300.jpg",
-    "Ratings": [
-        {
-            "Source": "Internet Movie Database",
-            "Value": "8.2/10"
-        }
-    ],
-    "Metascore": "N/A",
-    "imdbRating": "8.2",
-    "imdbVotes": "445,421",
-    "imdbID": "tt6468322",
-    "Type": "series",
-    "totalSeasons": "5",
-    "Response": "True"
-}
+[
+    {
+        "Title": "Money Heist",
+        "Year": "2017–2021",
+        "Rated": "TV-MA",
+        "Released": "02 May 2017",
+        "Runtime": "70 min",
+        "Genre": "Action, Crime, Drama",
+        "Director": "N/A",
+        "Writer": "Álex Pina",
+        "Actors": "Úrsula Corberó, Álvaro Morte, Itziar Ituño",
+        "Plot": "An unusual group of robbers attempt to carry out the most perfect robbery in Spanish history - stealing 2.4 billion euros from the Royal Mint of Spain.",
+        "Language": "Spanish, Russian, Serbian, English",
+        "Country": "Spain",
+        "Awards": "31 wins & 41 nominations",
+        "Poster": "https://m.media-amazon.com/images/M/MV5BNDJkYzY3MzMtMGFhYi00MmQ4LWJkNTgtZGNiZWZmMTMxNzdlXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_SX300.jpg",
+        "Ratings": [
+            {
+                "Source": "Internet Movie Database",
+                "Value": "8.2/10"
+            }
+        ],
+        "Metascore": "N/A",
+        "imdbRating": "8.2",
+        "imdbVotes": "445,421",
+        "imdbID": "tt6468322",
+        "Type": "series",
+        "totalSeasons": "5",
+        "Response": "True"
+    },
+    {
+        "Title": "Singham",
+        "Year": "2011",
+        "Rated": "Not Rated",
+        "Released": "22 Jul 2011",
+        "Runtime": "143 min",
+        "Genre": "Action, Crime, Drama",
+        "Director": "Rohit Shetty",
+        "Writer": "Hari, Yunus Sajawal, Sajid",
+        "Actors": "Ajay Devgn, Prakash Raj, Sudhanshu Pandey",
+        "Plot": "A truly honest police officer is transferred to a town controlled by a gangster he has humiliated. The gangster believes he can use good power to bring down this officer who made him look foolish and weak.",
+        "Language": "Hindi, Marathi, Gujarati, Tulu, English",
+        "Country": "India",
+        "Awards": "10 wins & 5 nominations",
+        "Poster": "https://m.media-amazon.com/images/M/MV5BMTA2NTAyNTMyMDdeQTJeQWpwZ15BbWU3MDEyMTY1ODU@._V1_SX300.jpg",
+        "Ratings": [
+            {
+                "Source": "Internet Movie Database",
+                "Value": "6.8/10"
+            },
+            {
+                "Source": "Rotten Tomatoes",
+                "Value": "57%"
+            }
+        ],
+        "Metascore": "N/A",
+        "imdbRating": "6.8",
+        "imdbVotes": "16,259",
+        "imdbID": "tt1948150",
+        "Type": "movie",
+        "DVD": "04 Apr 2017",
+        "BoxOffice": "$350,864",
+        "Production": "N/A",
+        "Website": "N/A",
+        "Response": "True"
+    }
+]
