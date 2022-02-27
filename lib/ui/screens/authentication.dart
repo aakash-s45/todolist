@@ -24,23 +24,10 @@ class _AuthenticationState extends State<Authentication> {
 
   @override
   Widget build(BuildContext context) {
-    bool showPass = false;
-    Color getColor(Set<MaterialState> states) {
-      const Set<MaterialState> interactiveStates = <MaterialState>{
-        MaterialState.pressed,
-        MaterialState.hovered,
-        MaterialState.focused,
-      };
-      if (states.any(interactiveStates.contains)) {
-        return Colors.blue;
-      }
-      return Colors.red;
-    }
-
     return Scaffold(
       backgroundColor: MyTheme.secondaryColor,
       appBar: AppBar(
-        title: Text('login'),
+        title: Text('Login'),
         centerTitle: true,
         backgroundColor: MyTheme.primaryColor,
       ),
@@ -87,14 +74,15 @@ class _AuthenticationState extends State<Authentication> {
                     String? navi =
                         await signIn(_emailfeild.text, _passfeild.text);
                     _passfeild.clear();
+
                     if (navi != null) {
                       DatabaseContent dbcontent = DatabaseContent();
                       dbcontent.setUserID = navi;
                       DatabaseContent().setUser = DatabaseContent().getUser();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Home()),
-                      );
+                      DatabaseContent().isEmailVerified =
+                          DatabaseContent.usr!.emailVerified;
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => Home()));
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text(AuthError.logoutErrorMessage)));
@@ -114,7 +102,7 @@ class _AuthenticationState extends State<Authentication> {
                 width: MediaQuery.of(context).size.width / 3,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(7),
-                  color: MyTheme.secondaryColor,
+                  color: Color.fromARGB(255, 0, 0, 0),
                 ),
                 child: MaterialButton(
                   onPressed: () async {
@@ -126,7 +114,7 @@ class _AuthenticationState extends State<Authentication> {
                     );
                   },
                   child: Text(
-                    'New user',
+                    'New user?',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,

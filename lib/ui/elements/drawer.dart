@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todolist/fire/dbContent.dart';
 import 'package:todolist/model/mytheme.dart';
@@ -33,25 +34,45 @@ class _MyDrawerState extends State<MyDrawer> {
                 accountEmail: (mailId == null)
                     ? const Text("E mail not found")
                     : Text(mailId as String),
-                currentAccountPicture: const CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      "https://cdn.images.express.co.uk/img/dynamic/39/590x/Game-of-Thrones-White-Walker-theory-1233486.webp?r=1579995873278"),
+                currentAccountPicture: const Icon(
+                  CupertinoIcons.person_alt_circle,
+                  size: 70,
                 ),
               ),
             ),
-            const ListTile(
-              leading: Icon(
-                Icons.home,
-              ),
-              title: Text('Home'),
-            ),
+            // ListTile(
+            //   onTap: () async {
+            //     if (DatabaseContent.usr != null &&
+            //         !DatabaseContent.usr!.emailVerified) {
+            //       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            //           content: Text('Check Your E-mail Account')));
+            //       print("sending link");
+            //       if (DatabaseContent.usr != null &&
+            //           !DatabaseContent.usr!.emailVerified) {
+            //         await DatabaseContent.usr!
+            //             .sendEmailVerification()
+            //             .then((value) {
+            //           DatabaseContent.usr!.reload().then((value) =>
+            //               {print(DatabaseContent.usr!.emailVerified)});
+            //           print("going to verify");
+            //           // DatabaseContent().isEmailVerified =
+            //           //     DatabaseContent.usr!.emailVerified;
+            //         });
+            //       }
+            //     }
+            //   },
+            //   leading: Icon(
+            //     Icons.done_all,
+            //   ),
+            //   title: Text('Verify Email'),
+            // ),
             ListTile(
               leading: const Icon(
                 Icons.mail,
               ),
-              title: Text('Email'),
+              title: const Text('Email'),
               subtitle: (mailId == null)
-                  ? Text("E mail not found")
+                  ? const Text("E mail not found")
                   : Text(mailId as String),
             ),
             ListTile(
@@ -60,13 +81,13 @@ class _MyDrawerState extends State<MyDrawer> {
                 signOut();
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                   // builder: (context) => Container(),
-                  builder: (context) => Authentication(),
+                  builder: (context) => const Authentication(),
                 ));
               },
-              leading: Icon(
-                Icons.add_business,
+              leading: const Icon(
+                Icons.logout,
               ),
-              title: Text('Logout'),
+              title: const Text('Logout'),
             ),
           ],
         ),

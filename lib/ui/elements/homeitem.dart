@@ -18,6 +18,7 @@ class _ContentItemTileState extends State<ContentItemTile> {
         context: context,
         builder: (context) => AlertDialog(
           title: Text("Confirm to Delete"),
+          // content: Text(widget.content['Title']),
           content: Text(widget.content['mname']),
           actions: [
             Row(
@@ -33,6 +34,7 @@ class _ContentItemTileState extends State<ContentItemTile> {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Text(
                             "${widget.content['mname']} deleted Successfully")));
+                    // "${widget.content['Title']} deleted Successfully")));
                     Navigator.pop(context);
                   },
                   child: Text("Yes"),
@@ -55,20 +57,30 @@ class _ContentItemTileState extends State<ContentItemTile> {
   Widget build(BuildContext context) {
     return Dismissible(
       key: UniqueKey(),
-      // key: Key(widget.content['mname']),
       onDismissed: (direction) {
         openDeleteDialog();
         setState(() {});
       },
       child: InkWell(
         onTap: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => ApiData(widget.content)));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  // builder: (context) => MovieDetail(widget.content)));
+                  builder: (context) => ApiData(widget.content)));
         },
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
             color: MyTheme.primaryColor,
+            boxShadow: [
+              BoxShadow(
+                color: Color.fromARGB(255, 184, 185, 185),
+                spreadRadius: 1,
+                blurRadius: 15,
+                offset: Offset(4, 4), // Shadow position
+              )
+            ],
             // color: Theme.of(context).canvasColor,
           ),
           height: 150,
@@ -77,8 +89,10 @@ class _ContentItemTileState extends State<ContentItemTile> {
             children: [
               Hero(
                 tag: Key(widget.content['mname']),
+                // tag: Key(widget.content['Title']),
                 child: ContentImage(
                   image: widget.content['poster'],
+                  // image: widget.content['Poster'],
                 ),
               ),
               Expanded(
@@ -96,6 +110,7 @@ class _ContentItemTileState extends State<ContentItemTile> {
                       child: SingleChildScrollView(
                         child: Text(
                           widget.content['mname'],
+                          // widget.content['Title'],
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
@@ -119,6 +134,7 @@ class _ContentItemTileState extends State<ContentItemTile> {
                       ),
                       Text(
                         widget.content['rating'],
+                        // widget.content['imdbRating'],
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 20.0,

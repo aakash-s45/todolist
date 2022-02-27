@@ -11,6 +11,7 @@ class DatabaseContent {
   static late String userID;
   static late User? usr;
   static late int contentListSize = 0;
+  static late bool isVerified = false;
 
   set conListSize(int size) {
     contentListSize = size;
@@ -23,6 +24,10 @@ class DatabaseContent {
 
   set setUser(user) {
     usr = user;
+  }
+
+  set isEmailVerified(bool val) {
+    isVerified = val;
   }
 
   User? getUser() {

@@ -38,6 +38,7 @@ Future<String?> register(String email, String pass, String userName) async {
         .createUserWithEmailAndPassword(email: email, password: pass);
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
+      print("user name set");
       user.updateDisplayName(userName);
       return user.uid;
     } else {

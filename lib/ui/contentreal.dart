@@ -14,6 +14,11 @@ class ContentItem extends StatelessWidget {
       .collection('todo')
       .doc(DatabaseContent.userID)
       .snapshots();
+  Future apiDataFun(String mname) async {
+    Map<String, dynamic> apiData = await DatabaseContent().getRating(mname);
+    return apiData;
+  }
+
   @override
   Widget build(BuildContext context) {
     Map<String, dynamic> mp;
@@ -33,11 +38,45 @@ class ContentItem extends StatelessWidget {
           List contenT = (snap as dynamic)['names'];
 
           return (contenT.isNotEmpty)
+              // ? ListView.builder(
+              //     reverse: true,
+              //     itemCount: contenT.length,
+              //     itemBuilder: (context, index) {
+              //       // print(contenT[index]['mname']);
+              //       return FutureBuilder(
+              //           future: apiDataFun(contenT[index]['mname']),
+              //           builder: (context, snapshot) {
+              //             // print(snapshot);
+              //             if (snapshot.connectionState ==
+              //                 ConnectionState.done) {
+              //               if (snapshot.hasData && !(snapshot.hasError)) {
+              //                 print("connection done");
+              //                 return Padding(
+              //                   padding: const EdgeInsets.all(12.0),
+              //                   child: Card(
+              //                       borderOnForeground: false,
+              //                       color: Colors.transparent,
+              //                       elevation: 0,
+              //                       child: ContentItemTile(snapshot.data)),
+              //                 );
+              //               } else {
+              //                 print("has error");
+              //                 return Center(child: CircularProgressIndicator());
+              //               }
+              //             } else {
+              //               print("no conenction");
+              //               return Center(child: CircularProgressIndicator());
+              //             }
+              //           });
+              //       // return Text("Hello");
+              //     })
               ? Column(
                   children: contenT.reversed
                       .map((mov) => Padding(
                             padding: const EdgeInsets.all(12),
                             child: Card(
+                                elevation: 0,
+                                color: Colors.transparent,
                                 child: (mov != null)
                                     ? ContentItemTile(mov)
                                     : Text("null")),

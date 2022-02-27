@@ -10,6 +10,7 @@ import 'package:todolist/ui/screens/home.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   runApp(MaterialApp(
     title: 'App',
     home: await getLandingPage(),
@@ -23,10 +24,10 @@ Future<Widget> getLandingPage() async {
       if (snapshot.hasData && (!snapshot.data!.isAnonymous)) {
         DatabaseContent().setUser = snapshot.data;
         DatabaseContent().setUserID = snapshot.data!.uid;
-        print("Logged in");
+        print("Logged in:- main");
         return Home();
       }
-      print("Logged out");
+      print("Logged out:- main");
       return Authentication();
     },
   );

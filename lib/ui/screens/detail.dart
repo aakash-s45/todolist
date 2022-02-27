@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:todolist/model/mytheme.dart';
 
 class MovieDetail extends StatelessWidget {
+  final someContent; //name photo rating only
   final content;
-  MovieDetail(this.content);
+  MovieDetail(this.content, this.someContent, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,6 @@ class MovieDetail extends StatelessWidget {
         elevation: 0,
         foregroundColor: MyTheme.primaryColor,
         backgroundColor: MyTheme.secondaryColor,
-        title: Text(""),
         centerTitle: true,
       ),
       body: Container(
@@ -41,65 +41,70 @@ class MovieDetail extends StatelessWidget {
                         )
                       ]),
                   child: Hero(
-                    tag: Key(content['Title']),
+                    tag: Key(someContent['mname']),
                     child: Image.network(
-                      content['Poster'],
+                      someContent['poster'],
                     ),
                   ),
                   width: MediaQuery.of(context).size.width / 3,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      content['Title'],
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    // SizedBox(height: 5),
-                    Text(content['Genre']),
-                    SizedBox(height: 12),
-                    Row(children: [
-                      // breaking bad
-                      SizedBox(
-                        height: 25.0,
-                        child: Image.network(
-                          'https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png',
-                          fit: BoxFit.fitWidth,
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                          someContent['mname'],
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.bold),
                         ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        content['imdbRating'],
-                        style: TextStyle(
+                        if (content['Genre'] != '') Text(content['Genre']),
+                        SizedBox(height: 12),
+                        Row(children: [
+                          SizedBox(
+                            height: 25.0,
+                            child: Image.network(
+                              'https://m.media-amazon.com/images/G/01/IMDb/BG_rectangle._CB1509060989_SY230_SX307_AL_.png',
+                              fit: BoxFit.fitWidth,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            someContent['rating'],
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Icon(
+                            Icons.star,
                             color: Colors.black,
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.black,
-                        size: 20.0,
-                      ),
-                      Text(
-                        "(${content['imdbVotes']})",
-                        style: TextStyle(color: MyTheme.primaryColor),
-                      ),
-                    ]),
-                    SizedBox(height: 10),
-                    Text(
-                      content["Released"],
-                      style: TextStyle(
-                          color: Colors.grey[700],
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold),
+                            size: 20.0,
+                          ),
+                          if (content['imdbVotes'] != '')
+                            Text(
+                              "(${content['imdbVotes']})",
+                              style: TextStyle(color: MyTheme.primaryColor),
+                            ),
+                        ]),
+                        SizedBox(height: 10),
+                        if (content['Released'] != '')
+                          Text(
+                            content["Released"],
+                            style: TextStyle(
+                                color: Colors.grey[700],
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold),
+                          ),
+                      ],
                     ),
-                  ],
+                  ),
                 )
               ],
             ),
@@ -201,9 +206,9 @@ class DetailTileBox extends StatelessWidget {
             boxShadow: const [
               BoxShadow(
                 color: Color.fromARGB(255, 184, 185, 185),
-                spreadRadius: 10,
-                blurRadius: 30,
-                offset: Offset(4, 8), // Shadow position
+                spreadRadius: 5,
+                blurRadius: 15,
+                offset: Offset(4, 4), // Shadow position
               )
             ],
             borderRadius: BorderRadius.circular(20),

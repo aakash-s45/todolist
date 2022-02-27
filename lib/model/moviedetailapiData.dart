@@ -4,7 +4,34 @@ import 'package:todolist/ui/screens/detail.dart';
 
 class ApiData extends StatelessWidget {
   final content;
-  const ApiData(this.content);
+  var obj = {
+    "Title": "",
+    "Year": "",
+    "Released": "",
+    "Runtime": "",
+    "Genre": "",
+    "Director": "",
+    "Writer": "",
+    "Actors": "",
+    "Plot": "",
+    "Language": "",
+    "Country": "",
+    "Awards": "",
+    "Ratings": [
+      {"Source": "", "Value": ""}
+    ],
+    "imdbRating": "",
+    "imdbVotes": "",
+    "imdbID": "",
+    "BoxOffice": "",
+    "Production": "",
+    "Website": "",
+    "Type": "",
+    "totalSeasons": "",
+    "Response": "True"
+  };
+  ApiData(this.content);
+
   Future apiDataFun(String mname) async {
     Map<String, dynamic> apiData = await DatabaseContent().getRating(mname);
     return apiData;
@@ -17,23 +44,22 @@ class ApiData extends StatelessWidget {
         builder: (context, snapshot) {
           // print(snapshot.toString());
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Material(
-                child: Center(child: CircularProgressIndicator()));
+            return MovieDetail(obj, content);
+            // return const Material(
+            //     child: Center(child: CircularProgressIndicator()));
           }
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.hasData && !(snapshot.hasError)) {
               // print(snapshot.data);
-              return MovieDetail(snapshot.data);
-              // return Text(snapshot.data.toString());
+              return MovieDetail((snapshot.data), content);
             }
-            return const Material(
-                child: Center(child: CircularProgressIndicator()));
-            // return Text("has error or dont have dat");
+            return MovieDetail(obj, content);
+            // return const Material(
+            //     child: Center(child: CircularProgressIndicator()));
           }
-          // return Text("connection error");
-          return const Material(
-              child: Center(child: CircularProgressIndicator()));
+          return MovieDetail(obj, content);
+          // return const Material(
+          //     child: Center(child: CircularProgressIndicator()));
         });
-    // return Text("he");
   }
 }

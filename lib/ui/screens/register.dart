@@ -90,7 +90,6 @@ class _RegisterState extends State<Register> {
                   ),
                   child: MaterialButton(
                     onPressed: () async {
-                      // this navi is user id
                       String? navi;
                       if (_passfeild.text != _confpassfeild.text) {
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -111,13 +110,9 @@ class _RegisterState extends State<Register> {
                           DatabaseContent().addUser(navi);
                           DatabaseContent().setUser =
                               DatabaseContent().getUser();
-
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
+                          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
                               builder: (context) => Home(),
-                            ),
-                          );
+                            ), (route) => false);
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text(AuthError.registerErrorMessage)));
