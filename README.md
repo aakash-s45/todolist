@@ -2,10 +2,10 @@
 
 This app shows the info of any movie/tv-show like rating, runtime, cast, plot, etc.
 Tools & Tech:
-  *Flutter
-  *Firebase
-  *Firestore
-  *The OMDb API
+-Flutter
+-Firebase
+-Firestore
+-The OMDb API
 
 
 
